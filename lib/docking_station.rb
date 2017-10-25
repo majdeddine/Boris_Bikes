@@ -10,7 +10,7 @@ class DockingStation
   end
 
   def dock(arg)
-    arg
+    return arg if arg.instance_of?(Bike)
   end
 
 end
