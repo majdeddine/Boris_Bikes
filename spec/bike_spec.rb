@@ -5,6 +5,6 @@ describe Bike do
 
   it "return a working bike" do
     bike = Bike.new
-    expect(bike.working?).to eq(true)
+    expect(bike.working?).to be(true)
   end
 end
