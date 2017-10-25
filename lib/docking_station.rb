@@ -10,7 +10,6 @@ class DockingStation
   end
 
   def dock(arg)
-    #@docked_bikes += 1
     arg
   end
 
