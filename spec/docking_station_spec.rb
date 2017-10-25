@@ -30,4 +30,10 @@ describe DockingStation do
      expect(station.docked_bikes).to eq(1)
    end
 
+   it 'returns the argument that passed to it' do
+     station = DockingStation.new
+     bike = Bike.new
+     expect(station.dock(bike)).to eq(bike)
+   end
+
 end
