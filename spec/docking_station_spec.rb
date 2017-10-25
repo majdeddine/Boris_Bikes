@@ -21,6 +21,7 @@ describe DockingStation do
 
    it 'docked_bikes returns one' do
      station = DockingStation.new
+     station.dock 
      expect(station.docked_bikes).to eq(1)
    end
 end
