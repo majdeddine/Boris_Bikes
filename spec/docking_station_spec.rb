@@ -19,9 +19,15 @@ describe DockingStation do
      expect(station).to respond_to(:docked_bikes)
    end
 
-   it 'docked_bikes returns one' do
+   it 'checks if dock receives argument' do
      station = DockingStation.new
-     station.dock 
+     expect(station).to respond_to(:dock).with(1).argument
+   end
+
+   xit 'docked_bikes returns one' do
+     station = DockingStation.new
+     station.dock
      expect(station.docked_bikes).to eq(1)
    end
+
 end
