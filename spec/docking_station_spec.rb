@@ -37,7 +37,7 @@ describe DockingStation do
 
    it 'checks that @dock raise error if 20 bikes are docked already' do
      testStation = DockingStation.new
-     expect{ 21.times{testStation.dock(Bike.new)} }.to raise_error("Station is full")
+     expect{ (DockingStation::DEFAULT_CAPACITY + 1).times{testStation.dock(Bike.new)} }.to raise_error("Station is full")
    end
 
 
