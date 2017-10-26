@@ -39,6 +39,13 @@ describe DockingStation do
      testStation = DockingStation.new
      expect{ (DockingStation::DEFAULT_CAPACITY + 1).times{testStation.dock(Bike.new)} }.to raise_error("Station is full")
    end
+   
+   it 'sets station capacity to 30 when station is created with argument 30' do
+     expect(DockingStation.new(30).capacity).to eq 30
+   end
 
+  it 'sets station capacity to 20 if no argument is passed' do
+    expect(DockingStation.new.capacity).to eq 20
+  end
 
 end
