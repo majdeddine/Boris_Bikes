@@ -30,4 +30,8 @@ describe DockingStation do
      expect(station.docked_bikes.last).to be_an_instance_of(Bike)
    end
 
+   it 'checks that @release_bike raise error if #docked_bikes is empty' do
+     expect{station.release_bike}.to raise_error("no bikes left!")
+   end
+
 end
