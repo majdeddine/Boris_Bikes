@@ -2,10 +2,14 @@ require 'docking_station'
 
 describe DockingStation do
  station = DockingStation.new
+ let(:bike) { double :bike }
+
    it { is_expected.to respond_to(:release_bike) }
 
    it 'gets a bike' do
-     station.dock double(:bike)
+     allow(bike).to receive(:instance_of?).with(anything()) { true } 
+     allow(bike).to receive(:working?) { true } 
+     station.dock bike
      expect(station.release_bike).to be_an_instance_of(Bike)
    end
 
@@ -36,8 +40,9 @@ describe DockingStation do
    end
 
    it 'checks that @dock raise error if 20 bikes are docked already' do
+     allow(bike).to receive(:instance_of?).with(anything()) { true } 
      testStation = DockingStation.new
-     expect{ (DockingStation::DEFAULT_CAPACITY + 1).times{testStation.dock double(:bike)} }.to raise_error("Station is full")
+     expect{ (DockingStation::DEFAULT_CAPACITY + 1).times{testStation.dock bike} }.to raise_error("Station is full")
    end
 
    it 'sets station capacity to 30 when station is created with argument 30' do

@@ -11,7 +11,7 @@ class DockingStation
     raise("no bikes left!") if empty?   
 
     @docked_bikes.each do |bike|
-      return @docked_bikes.delete(bike) if bike.condition == :working
+      return @docked_bikes.delete(bike) if bike.working?
     end
     raise("No working bikes available")    
   end
