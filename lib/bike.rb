@@ -1,7 +1,12 @@
 class Bike
+  attr_accessor :condition
+
+  def initialize
+    @condition = :working
+  end
 
   def working?
-    true
+    return @condition == :working
   end
 
 end

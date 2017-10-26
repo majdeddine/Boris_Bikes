@@ -25,11 +25,11 @@ describe DockingStation do
      expect(station.docked_bikes).to be_instance_of(Array)
    end
 
-   xit 'checks that @docked_bikes is an instance_of Bike'do
-     bike = Bike.new
-     station.dock(bike)
-     expect(station.docked_bikes.last).to be_an_instance_of(Bike)
-   end
+#   it 'checks that @docked_bikes is an instance_of Bike'do
+#     bike = Bike.new
+#     station.dock(bike)
+#     expect(station.docked_bikes.last).to be_an_instance_of(Bike)
+#   end
 
    it 'checks that @release_bike raise error if #docked_bikes is empty' do
      expect{ DockingStation.new.release_bike }.to raise_error("no bikes left!")
@@ -46,6 +46,18 @@ describe DockingStation do
 
   it 'sets station capacity to 20 if no argument is passed' do
     expect(DockingStation.new.capacity).to eq 20
+  end
+
+  it '#dock should accept argument broken' do
+    expect{ DockingStation.new.dock(Bike.new,"broken") }.to_not raise_error
+  end
+
+  it '#release_bike should not release broken bike' do
+    station = DockingStation.new
+    bike = Bike.new
+    bike.condition = :broken
+    station.dock(bike)
+    expect{ station.release_bike }.to raise_error("No working bikes available")
   end
 
 end

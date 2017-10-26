@@ -7,14 +7,19 @@ class DockingStation
     @capacity = capacity
   end
 
-  def release_bike
-    raise("no bikes left!") if empty?
-    @docked_bikes.last
+  def release_bike #don't release broken
+    raise("no bikes left!") if empty?   
+
+    @docked_bikes.each do |bike|
+      return @docked_bikes.delete(bike) if bike.condition == :working
+    end
+    raise("No working bikes available")    
   end
 
-  def dock(arg)
+  def dock(bike, state="working")
     raise("Station is full") if full?
-    @docked_bikes << arg if arg.instance_of?(Bike)
+    bike.condition = :broken if state == "broken"
+    @docked_bikes << bike if bike.instance_of?(Bike)
   end
 
   private
