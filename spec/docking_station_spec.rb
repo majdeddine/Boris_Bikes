@@ -34,5 +34,11 @@ describe DockingStation do
    it 'checks that @release_bike raise error if #docked_bikes is empty' do 
      expect{ DockingStation.new.release_bike }.to raise_error("no bikes left!")
    end
+   
+   it 'checks that @dock raise error if a bike is docked already' do 
+     testStation = DockingStation.new
+     testStation.dock(Bike.new)
+     expect{ testStation.dock(Bike.new) }.to raise_error("Station is full")
+   end
 
 end
