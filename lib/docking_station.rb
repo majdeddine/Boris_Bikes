@@ -2,7 +2,7 @@ class DockingStation
   attr_reader :docked_bikes
 
   def initialize
-    @docked_bikes = 0
+    @docked_bikes =[]
   end
 
   def release_bike
@@ -10,7 +10,7 @@ class DockingStation
   end
 
   def dock(arg)
-    return arg if arg.instance_of?(Bike)
+    @docked_bikes << arg if arg.instance_of?(Bike)
   end
 
 end
