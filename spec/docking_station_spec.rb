@@ -22,7 +22,6 @@ describe DockingStation do
    it 'checks if dock receives one argument' do
      station = DockingStation.new
      expect(station).to respond_to(:dock).with(1).argument
-     #expect(station.dock(bike)).to be_an_instance_of(Bike)
    end
 
    it 'checks if @docked_bikes is an array' do
