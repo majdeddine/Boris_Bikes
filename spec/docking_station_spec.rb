@@ -5,7 +5,7 @@ describe DockingStation do
    it { is_expected.to respond_to(:release_bike) }
 
    it 'gets a bike' do
-     station.dock(Bike.new)
+     station.dock double(:bike)
      expect(station.release_bike).to be_an_instance_of(Bike)
    end
 
@@ -37,7 +37,7 @@ describe DockingStation do
 
    it 'checks that @dock raise error if 20 bikes are docked already' do
      testStation = DockingStation.new
-     expect{ (DockingStation::DEFAULT_CAPACITY + 1).times{testStation.dock(Bike.new)} }.to raise_error("Station is full")
+     expect{ (DockingStation::DEFAULT_CAPACITY + 1).times{testStation.dock double(:bike)} }.to raise_error("Station is full")
    end
 
    it 'sets station capacity to 30 when station is created with argument 30' do
@@ -49,12 +49,12 @@ describe DockingStation do
   end
 
   it '#dock should accept argument broken' do
-    expect{ DockingStation.new.dock(Bike.new,"broken") }.to_not raise_error
+    expect{ DockingStation.new.dock(double(:bike),"broken") }.to_not raise_error
   end
 
   it '#release_bike should not release broken bike' do
     station = DockingStation.new
-    bike = Bike.new
+    bike = double(:bike)
     bike.condition = :broken
     station.dock(bike)
     expect{ station.release_bike }.to raise_error("No working bikes available")
