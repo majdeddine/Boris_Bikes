@@ -19,23 +19,22 @@ describe DockingStation do
      expect(station).to respond_to(:docked_bikes)
    end
 
-   it 'checks if dock receives argument and that argument is instance of Bike' do
+   it 'checks if dock receives one argument' do
      station = DockingStation.new
-     bike = Bike.new
      expect(station).to respond_to(:dock).with(1).argument
-     expect(station.dock(bike)).to be_an_instance_of(Bike)
+     #expect(station.dock(bike)).to be_an_instance_of(Bike)
    end
 
-   xit 'docked_bikes returns one' do
+   it 'checks if @docked_bikes is an array' do
      station = DockingStation.new
-     station.dock(0)
-     expect(station.docked_bikes).to eq(0)
+     expect(station.docked_bikes).to be_instance_of(Array)
    end
 
-   xit 'returns the argument that passed to it' do
+   it 'checks that @docked_bikes is an instance_of Bike'do
      station = DockingStation.new
      bike = Bike.new
-     expect(station.dock(bike)).to eq(bike)
+     station.dock(bike)
+     expect(station.docked_bikes.last).to be_an_instance_of(Bike)
    end
 
 end
