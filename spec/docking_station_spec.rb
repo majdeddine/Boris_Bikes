@@ -25,17 +25,17 @@ describe DockingStation do
      expect(station.docked_bikes).to be_instance_of(Array)
    end
 
-   it 'checks that @docked_bikes is an instance_of Bike'do
+   xit 'checks that @docked_bikes is an instance_of Bike'do
      bike = Bike.new
      station.dock(bike)
      expect(station.docked_bikes.last).to be_an_instance_of(Bike)
    end
 
-   it 'checks that @release_bike raise error if #docked_bikes is empty' do 
+   it 'checks that @release_bike raise error if #docked_bikes is empty' do
      expect{ DockingStation.new.release_bike }.to raise_error("no bikes left!")
    end
-   
-   it 'checks that @dock raise error if a bike is docked already' do 
+
+   it 'checks that @dock raise error if a bike is docked already' do
      testStation = DockingStation.new
      testStation.dock(Bike.new)
      expect{ testStation.dock(Bike.new) }.to raise_error("Station is full")
