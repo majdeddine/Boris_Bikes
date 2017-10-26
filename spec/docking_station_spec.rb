@@ -7,8 +7,8 @@ describe DockingStation do
    it { is_expected.to respond_to(:release_bike) }
 
    it 'gets a bike' do
-     allow(bike).to receive(:instance_of?).with(anything()) { true } 
-     allow(bike).to receive(:working?) { true } 
+     allow(bike).to receive(:instance_of?).with(anything()) { true }
+     allow(bike).to receive(:working?) { true }
      station.dock bike
      expect(station.release_bike).to be_an_instance_of(Bike)
    end
@@ -40,7 +40,7 @@ describe DockingStation do
    end
 
    it 'checks that @dock raise error if 20 bikes are docked already' do
-     allow(bike).to receive(:instance_of?).with(anything()) { true } 
+     allow(bike).to receive(:instance_of?).with(anything()) { true }
      testStation = DockingStation.new
      expect{ (DockingStation::DEFAULT_CAPACITY + 1).times{testStation.dock bike} }.to raise_error("Station is full")
    end
@@ -54,13 +54,16 @@ describe DockingStation do
   end
 
   it '#dock should accept argument broken' do
-    expect{ DockingStation.new.dock(double(:bike),"broken") }.to_not raise_error
+    allow(bike).to receive(:instance_of?).with(anything()) { true }
+    allow(bike).to receive(:condition)
+    expect{ DockingStation.new.dock(bike,"broken") }.to_not raise_error
   end
 
   it '#release_bike should not release broken bike' do
+    allow(bike).to receive(:instance_of?).with(anything()) { true }
+    allow(bike).to receive(:condition){:broken}
+    allow(bike).to receive(:working?) { false }
     station = DockingStation.new
-    bike = double(:bike)
-    bike.condition = :broken
     station.dock(bike)
     expect{ station.release_bike }.to raise_error("No working bikes available")
   end
