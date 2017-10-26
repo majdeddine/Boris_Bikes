@@ -7,11 +7,11 @@ class DockingStation
 
   def release_bike
     raise("no bikes left!") if @docked_bikes.empty?
-    Bike.new
+    @docked_bikes.last
   end
 
   def dock(arg)
-    raise("Station is full") if @docked_bikes.size >= 1
+    raise("Station is full") if @docked_bikes.size >= 20
     @docked_bikes << arg if arg.instance_of?(Bike)
   end
 
